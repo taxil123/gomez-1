@@ -1,0 +1,26 @@
+{
+  "name": "gomez",
+  "version": "1.0.0",
+  "description": "gomez is a torrent search engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/normanlol/gomez.git"
+  },
+  "keywords": [
+    "torrent",
+    "search"
+  ],
+  "author": "n0rmancodes",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/normanlol/gomez/issues"
+  },
+  "homepage": "https://github.com/normanlol/gomez#readme",
+  "dependencies": {
+    "torrent-search-api": "^2.1.3"
+  }
+}

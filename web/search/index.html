@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>search - gomez</title>
+        <link rel="shortcut icon" type="image/png" href="/gomez.png"/>
+        <meta charset="UTF-8">
+        <link href="/css/style.css" rel="stylesheet">
+    </head>
+    <body class="noMargin">
+        <div class="banner">
+            <img src="/gomez.png">
+            <h1>gomez</h1>
+            <input id="q" autofocus="" placeholder="Search public torrents across the web.">
+        </div>
+        <div class="mainContent">
+            <div style="margin-top:1%;">
+                <h1 class="noMargin">searching for <span id="query"></span></h1>
+                <p class="noMargin">no links below are controlled by us.</p>
+            </div>
+            <div id="load">
+                <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <div id="searchResults"></div>
+        </div>
+        <script src="/js/global.js"></script>
+        <script src="/js/search.js"></script>
+    </body>
+</html>
