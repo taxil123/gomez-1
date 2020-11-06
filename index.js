@@ -160,6 +160,13 @@ async function renderServer(req, res) {
                 });
                 res.end(json);
             }
+        } else {
+            var json = JSON.stringify({
+                "err": {
+                    "code": "invalidEndpoint",
+                    "message": "Endpoint is invalid."
+                }
+            });
         }
     } else {
         fs.readFile("./errors/404.html", function (err, resp) {
