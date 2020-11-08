@@ -1,5 +1,15 @@
 # gomez
-gomez is a torrent search engine written in NodeJS.
+gomez is a torrent search engine written in nodeJS.
+
+## features
+- [open json api](./docs/api/README.md)
+- clean and simple ui
+- no logs
+
+## planned features
+- statistics on homepage(i.e. how fast the server you're on is)
+- search sort/filter
+- compact mode
 
 ## screenshots
 ![Search Results](./screenshots/1.png)
@@ -8,11 +18,6 @@ gomez is a torrent search engine written in NodeJS.
 
 ## disclaimer
 use this for legal purposes only please. 
-
-## features
-- [open json api](./docs/api/README.md)
-- clean and simple ui
-- no logs
 
 ## installation (debian 10+)
 
@@ -32,6 +37,7 @@ node index.js
 ```
 
 ### production
+
 ```
 wget https://raw.githubusercontent.com/normanlol/gomez/main/gomez.service -O /etc/systemd/system/gomez.service
 
