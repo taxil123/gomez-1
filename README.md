@@ -14,7 +14,7 @@ use this for legal purposes only please.
 - clean and simple ui
 - no logs
 
-## Installation (Debian10)
+## installation (debian 10+)
 
 ```
 apt update -y && apt upgrade -y
@@ -25,13 +25,13 @@ cd gomez
 npm install -d
 ```
 
-## One-time Use
+### 1-time Use
 
 ```
 node index.js
 ```
 
-## Production
+### production
 ```
 wget https://raw.githubusercontent.com/normanlol/gomez/main/gomez.service -O /etc/systemd/system/gomez.service
 
