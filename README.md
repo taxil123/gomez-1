@@ -29,7 +29,7 @@ node index.js
 
 ## Production
 
-wget https://ech1.github.io/blog/servers/gomez/gomez.service -O /etc/systemd/system/gomez.service
+wget https://raw.githubusercontent.com/normanlol/gomez/main/gomez.service -O /etc/systemd/system/gomez.service
 
 systemctl daemon-reload
 systemctl enable --now gomez
