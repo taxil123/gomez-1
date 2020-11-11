@@ -45,3 +45,12 @@ systemctl daemon-reload
 systemctl enable --now gomez
 systemctl status gomez 
 ```
+
+### Updating
+
+```
+cd ~/gomez
+systemctl stop gomez
+git pull
+systemctl start gomez
+```
