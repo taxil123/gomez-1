@@ -9,6 +9,18 @@ a {
     color:white;
 }
 
+table {
+    padding-left:44.5%;
+}
+
+table * {
+    text-align:left;
+}
+
+th {
+    padding-right:35px;
+}
+
 .noMargin {
     margin:0;
 }

@@ -4,9 +4,27 @@ const url = require("url");
 const tsapi = require("torrent-search-api");
 const port = process.env.PORT || 8250;
 
-tsapi.enablePublicProviders();
-http.createServer(renderServer).listen(port);
-console.log("gomez - running on port " + port);
+start();
+async function start () {
+    tsapi.enablePublicProviders();
+    tsapi.disableProvider("torrentz2");
+    tsapi.disableProvider("eztv");
+    if (!fs.existsSync("./speed.json") | !fs.existsSync("./speed-individual.json")) {
+        console.log("[i] completing tests (since 1 or both do not exist yet)...")
+        await test1();
+        await test2();
+    } else {
+        var json = JSON.parse(fs.readFileSync("./speed.json"));
+        var since = (Date.now() - json.lastTest);
+        if (since >= 10800000) {
+            console.log("[i] redoing tests since they are out of date...");
+            await test1();
+            await test2();
+        }
+    }
+    http.createServer(renderServer).listen(port);
+    console.log("gomez - running on port " + port);
+}
  
 async function renderServer(req, res) {
     var url_parsed = url.parse(req.url, true);
@@ -160,6 +178,53 @@ async function renderServer(req, res) {
                 });
                 res.end(json);
             }
+        } else if (path[0] == "speed") {
+            if (fs.existsSync("./speed.json") && fs.existsSync("./speed-individual")) {
+                var data = JSON.parse(fs.readFileSync("./speed.json"));
+                var iData = JSON.parse(fs.readFileSync("./speed-individual.json"));
+                var since = (Date.now() - data.lastTest);
+                console.log((since >= 10800000))
+                if (since >= 10800000) {
+                    await test1();
+                    await test2();
+                    var data = JSON.parse(fs.readFileSync("./speed.json"));
+                    var iData = JSON.parse(fs.readFileSync("./speed-individual.json"));
+                    var final = {
+                        "individual": iData,
+                        "joined": data
+                    }
+                    res.writeHead(200, {
+                        "Access-Control-Allow-Origin": "*",
+                        "Content-Type": "application/json",
+                        "Server": "gomez"
+                    });
+                    res.end(JSON.stringify(final));
+                } else {
+                    var final = {
+                        "individual": iData,
+                        "joined": data
+                    }
+                    res.writeHead(200, {
+                        "Access-Control-Allow-Origin": "*",
+                        "Content-Type": "application/json",
+                        "Server": "gomez"
+                    });
+                    res.end(JSON.stringify(final));
+                }
+            } else {
+                var data = JSON.parse(fs.readFileSync("./speed.json"));
+                var iData = JSON.parse(fs.readFileSync("./speed-individual.json"));
+                var final = {
+                    "individual": iData,
+                    "joined": data
+                }
+                res.writeHead(200, {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-Type": "application/json",
+                    "Server": "gomez"
+                });
+                res.end(JSON.stringify(final));
+            }
         } else {
             var json = JSON.stringify({
                 "err": {
@@ -185,5 +250,43 @@ async function renderServer(req, res) {
                 res.end(resp);
             }
         })
+    }
+}
+
+async function test1() {
+    var x = [];
+    for (var c in tsapi.getActiveProviders()) {
+        var a = { "provider": tsapi.getActiveProviders()[c].name }
+        var b = Date.now();
+        var c = await tsapi.search([ tsapi.getActiveProviders()[c].name ], "test");
+        var d = Date.now();
+        a.duration = (d - b);
+        x.push(a);
+    }
+    fs.writeFileSync("./speed-individual.json", JSON.stringify(x));
+}
+
+async function test2() {
+    var start = Date.now();
+    var t = await tsapi.search("test");
+    if (t.length !== 0) {
+        var end = Date.now();
+        var timeTook = end - start;
+        var data = JSON.stringify({
+            "requestStart": start,
+            "requestEnd": end,
+            "duration": timeTook,
+            "lastTest": Date.now()
+        })
+        fs.writeFileSync("./speed.json", data);
+    } else {
+        console.log("[!] error doing test, caching the error, delete './speed.json' to try again");
+        var data = JSON.stringify({
+            "err": {
+                "message": "The speed test failed, please try again later",
+                "code": "speedFail"
+            }
+        })
+        fs.writeFileSync("./speed.json", data);
     }
 }
