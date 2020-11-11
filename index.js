@@ -9,6 +9,8 @@ async function start () {
     tsapi.enablePublicProviders();
     tsapi.disableProvider("torrentz2");
     tsapi.disableProvider("eztv");
+    tsapi.disableProvider("eztv");
+    tsapi.disableProvider("kickasstorrents");
     if (!fs.existsSync("./speed.json") | !fs.existsSync("./speed-individual.json")) {
         console.log("[i] completing tests (since 1 or both do not exist yet)...")
         await test1();
