@@ -75,14 +75,49 @@ a {
     padding-top:0.5%;
     padding-left:1%;
     padding-right:2%;
-    padding-bottom:0.5%;
+    padding-bottom:0;
 }
 
-.result h2 {
-    margin-bottom:10px;
+.result .leftSide {
+    float:left;
+    width:80%;
 }
 
-.result h3 {
+.result .leftSide .icon {
+    float:right;
+    height:100%;
+    width:5%;
+    margin-top:-3.5%;
+}
+
+.result .rightSide {
+    float:right;
+    width:15%;
+    text-align:right;
+}
+
+.result .rightSide button {
+    break-after:always;
+    width:100%;
+    background:#282828;
+    color:white;
+    text-align:center;
+    border:0;
+    min-height:30px;
+    margin-bottom:2.5px;
+}
+
+.result .rightSide .halfButton {
+    width:49%;
+    break-after:avoid;
+    float:left;
+}
+
+.result .rightSide button:hover {
+    background:#424040;
+}
+
+.result h2, .result h3 {
     margin:0;
 }
 

@@ -7,9 +7,9 @@ gomez is a torrent search engine written in nodeJS.
 - no logs
 
 ## planned features
-- statistics on homepage(i.e. how fast the server you're on is)
+- statistics on homepage (i.e. how fast the server you're on is)
 - search sort/filter
-- compact mode
+- category based search
 
 ## screenshots
 ![Search Results](./screenshots/1.png)
