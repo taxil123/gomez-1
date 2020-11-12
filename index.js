@@ -9,7 +9,6 @@ async function start () {
     tsapi.enablePublicProviders();
     tsapi.disableProvider("torrentz2");
     tsapi.disableProvider("eztv");
-    tsapi.disableProvider("eztv");
     tsapi.disableProvider("kickasstorrents");
     if (!fs.existsSync("./speed.json") | !fs.existsSync("./speed-individual.json")) {
         console.log("[i] completing tests (since 1 or both do not exist yet)...")
@@ -185,7 +184,6 @@ async function renderServer(req, res) {
                 var data = JSON.parse(fs.readFileSync("./speed.json"));
                 var iData = JSON.parse(fs.readFileSync("./speed-individual.json"));
                 var since = (Date.now() - data.lastTest);
-                console.log((since >= 10800000))
                 if (since >= 10800000) {
                     await test1();
                     await test2();
