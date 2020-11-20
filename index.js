@@ -1,15 +1,12 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
-const tsapi = require("torrent-search-api");
+const tsapi = require("@n0rmancodes/torrent-search-api");
 const port = process.env.PORT || 8250;
 
 start();
 async function start () {
     tsapi.enablePublicProviders();
-    tsapi.disableProvider("torrentz2");
-    tsapi.disableProvider("eztv");
-    tsapi.disableProvider("kickasstorrents");
     if (!fs.existsSync("./speed.json") | !fs.existsSync("./speed-individual.json")) {
         console.log("[i] completing tests (since 1 or both do not exist yet)...")
         await test1();
@@ -180,7 +177,7 @@ async function renderServer(req, res) {
                 res.end(json);
             }
         } else if (path[0] == "speed") {
-            if (fs.existsSync("./speed.json") && fs.existsSync("./speed-individual")) {
+            if (fs.existsSync("./speed.json") && fs.existsSync("./speed-individual.json")) {
                 var data = JSON.parse(fs.readFileSync("./speed.json"));
                 var iData = JSON.parse(fs.readFileSync("./speed-individual.json"));
                 var since = (Date.now() - data.lastTest);

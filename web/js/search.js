@@ -19,7 +19,12 @@ function load() {
             h2.innerHTML = json[c].title;
             lDiv.appendChild(h2);
             var details = document.createElement("H3");
-            details.innerHTML = json[c].time + " • " + json[c].size + " • " + json[c].provider + " • " + json[c].seeds.toLocaleString() + " seeds • " + json[c].peers.toLocaleString() + " peers";
+            if (json[c].peers) {
+                var peers = json[c].peers.toLocaleString() 
+            } else {
+                var peers = "[N/A]";
+            }
+            details.innerHTML = json[c].time + " • " + json[c].size + " • " + json[c].provider + " • " + json[c].seeds.toLocaleString() + " seeds • " + peers + " peers";
             lDiv.appendChild(details);
             div.appendChild(lDiv);
             var rDiv = document.createElement("DIV");
