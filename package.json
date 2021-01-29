@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/normanlol/gomez#readme",
   "dependencies": {
-    "@n0rmancodes/torrent-search-api": "^2.1.4"
+    "@n0rmancodes/torrent-search-api": "^2.1.3-hf"
   }
 }

@@ -7,6 +7,7 @@ const port = process.env.PORT || 8250;
 start();
 async function start () {
     tsapi.enablePublicProviders();
+    tsapi.disableProvider("Torrent9");
     if (!fs.existsSync("./speed.json") | !fs.existsSync("./speed-individual.json")) {
         console.log("[i] completing tests (since 1 or both do not exist yet)...")
         await test1();
@@ -255,7 +256,9 @@ async function test1() {
     for (var c in tsapi.getActiveProviders()) {
         var a = { "provider": tsapi.getActiveProviders()[c].name }
         var b = Date.now();
-        var c = await tsapi.search([ tsapi.getActiveProviders()[c].name ], "test");
+        var c = await tsapi.search([ tsapi.getActiveProviders()[c].name ], "test").catch(function(e) {
+            console.log(tsapi.getActiveProviders()[c].name)
+        });
         var d = Date.now();
         a.duration = (d - b);
         x.push(a);
