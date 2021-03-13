@@ -4,7 +4,7 @@
   "description": "gomez is a torrent search engine",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
