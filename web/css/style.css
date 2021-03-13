@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300&display=swap');
 
 body {
     color:white;
@@ -33,11 +33,11 @@ th {
 
 .banner * {
     float:left;
-    font-family:'Comfortaa',Helvetica;
+font-family: 'Recursive', sans-serif;
 }
 
 .banner img {
-    width:80px;
+    width:70px;
     margin:10px;
 }
 
@@ -61,7 +61,7 @@ th {
 }
 
 .mainContent {
-    font-family:Helvetica;
+    font-family: 'Recursive', sans-serif;
     margin-left:1%;
     margin-right:1%;
 }
@@ -71,7 +71,7 @@ th {
 }
 
 .intro * {
-    font-family:'Comfortaa',Helvetica;
+   font-family: 'Recursive', sans-serif;
     margin-bottom:0.15%;
 }
 
